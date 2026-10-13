@@ -1,0 +1,645 @@
+/* ==========================================================================
+   FINART BY AGATHA · SISTEMA DE DISEÑO EJECUTIVO OSCURO (LUXURY DARK)
+   Referencia principal: 01_guia_dashboard_opcion1.png
+   Recurso de joyería: 02_fondo_joyeria_finart.png
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap');
+
+:root {
+  /* Paleta Oficial: Zafiro Esmeralda Premium */
+  --bg-main: #071729;               /* Fondo principal: #071729 */
+  --bg-sidebar: #050f1c;            /* Sidebar azul noche */
+  --bg-card: #102E4A;               /* Tarjetas y paneles: #102E4A */
+  --bg-card-hover: #153a5c;         /* Hover paneles */
+  --bg-surface-elevated: #163859;   /* Elevados */
+  
+  /* Bordes y Líneas */
+  --border-subtle: rgba(141, 200, 240, 0.15); /* Borde sutil azul hielo */
+  --border-card: rgba(50, 124, 193, 0.35);     /* Borde azul metas */
+  --border-card-hover: rgba(24, 184, 148, 0.4); /* Hover jade */
+  --border-gold: rgba(212, 175, 55, 0.55);
+  
+  /* Acentos de Color Zafiro Esmeralda */
+  --accent-blue-meta: #327CC1;      /* Azul para metas y referencias: #327CC1 */
+  --accent-emerald-real: #087F68;   /* Esmeralda para ventas reales: #087F68 */
+  --accent-jade: #18B894;           /* Jade luminoso para segunda serie: #18B894 */
+  --accent-ice-blue: #8DC8F0;       /* Azul hielo para comparaciones: #8DC8F0 */
+  --accent-amber: #E9B65B;          /* Ámbar para atención requerida: #E9B65B */
+  --accent-coral: #E87575;          /* Rojo suave para estados críticos: #E87575 */
+  --accent-red: #E87575;
+  --accent-gold: #d4af37;           /* Dorado discreto de marca */
+  --accent-gold-light: #f3d082;
+  
+  /* Tipografía */
+  --text-primary: #ffffff;          /* Blanco de alto contraste */
+  --text-secondary: #a3c1dc;        /* Gris azulado claro y legible */
+  --text-muted: #7697b7;            /* Muted legible */
+  --text-gold: #e5c07b;
+}
+
+/* Ocultar elementos nativos de Streamlit */
+#MainMenu, header[data-testid="stHeader"], footer, [data-testid="stDecoration"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* Estilos Globales de la Aplicación */
+html, body, [data-testid="stAppViewContainer"], .stApp {
+  background-color: var(--bg-main) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  overflow-x: hidden !important;
+}
+
+/* Contenedor Principal Adaptado al Menú Lateral Fijo */
+@media (min-width: 900px) {
+  .block-container, [data-testid="stMainBlockContainer"] {
+    margin-left: 236px !important;
+    margin-right: 28px !important;
+    width: calc(100% - 264px) !important;
+    max-width: none !important;
+    padding-top: 1.2rem !important;
+    padding-bottom: 2.5rem !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 899px) {
+  .block-container, [data-testid="stMainBlockContainer"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+}
+
+/* ===== BARRA LATERAL (SIDEBAR) & MARCA ===== */
+.finart-sidebar-brand {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 220px !important;
+  height: 124px !important;
+  z-index: 10020 !important;
+  background: var(--bg-sidebar) !important;
+  padding: 22px 20px 14px !important;
+  border-right: 1px solid var(--border-subtle) !important;
+  box-sizing: border-box !important;
+}
+.brand-word {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  line-height: 1;
+}
+.brand-by {
+  font-family: 'Playfair Display', 'Brush Script MT', cursive, serif;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--accent-gold);
+  margin-top: 2px;
+}
+.brand-line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 12px 0 8px;
+}
+.brand-channel {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7e92a2;
+  line-height: 1.45;
+}
+.brand-channel strong {
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: #e2e8f0;
+  text-transform: none;
+  font-weight: 600;
+}
+
+/* Navegación por Pestañas en la Barra Lateral */
+@media (min-width: 900px) {
+  [data-testid="stTabs"] [role="tablist"] {
+    position: fixed !important;
+    left: 0 !important;
+    top: 124px !important;
+    width: 220px !important;
+    height: calc(100vh - 124px) !important;
+    z-index: 10010 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 7px !important;
+    padding: 16px 12px 140px !important;
+    margin: 0 !important;
+    background: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border-subtle) !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  [data-testid="stTabs"] button[role="tab"] {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    padding: 11px 14px !important;
+    color: #8fa4b8 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+  }
+  [data-testid="stTabs"] button[role="tab"]:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+  }
+  [data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+    background: rgba(212, 175, 55, 0.08) !important;
+    border: 1px solid var(--border-gold) !important;
+    color: var(--accent-gold-light) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 12px rgba(212, 175, 55, 0.12) !important;
+  }
+  [data-testid="stTabs"] button[role="tab"][aria-selected="true"] * {
+    color: var(--accent-gold-light) !important;
+  }
+  [data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+    display: none !important;
+  }
+}
+
+/* Pie Decorativo del Menú Lateral con Fondo de Joyería */
+.finart-sidebar-footer {
+  position: fixed !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 220px !important;
+  height: 120px !important;
+  z-index: 10015 !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+  border-right: 1px solid var(--border-subtle) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: 16px 18px !important;
+  background-size: cover !important;
+  background-position: left bottom !important;
+  background-repeat: no-repeat !important;
+}
+.sidebar-footer-text {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--accent-gold);
+  line-height: 1.5;
+  text-transform: uppercase;
+  opacity: 0.85;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+}
+
+/* ===== ENCABEZADO DE PÁGINA (HEADER) CON FOTOGRAFÍA ===== */
+.ardp-header, .ardp-page {
+  background-color: #0b1e33 !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--border-card) !important;
+  padding: 22px 28px !important;
+  margin: 0 0 16px 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  background-repeat: no-repeat !important;
+  background-position: right center !important;
+  background-size: cover !important;
+}
+.ardp-header .eyebrow, .ardp-page .eyebrow {
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--accent-gold-light) !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+}
+.ardp-header .title, .ardp-page .title {
+  font-size: 34px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 2px 0 6px 0 !important;
+  letter-spacing: -0.02em !important;
+}
+.ardp-header .sub, .ardp-page .sub {
+  font-size: 13.5px !important;
+  color: var(--text-secondary) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  font-weight: 400 !important;
+}
+
+/* ===== BARRA DE CONTROLES (FILTROS / VISTAS / MONEDA) ===== */
+.finart-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 10px 18px;
+  margin-bottom: 16px;
+}
+.finart-control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.finart-control-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Píldoras y botones de selección */
+[data-testid="stRadio"] > div {
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+[data-testid="stRadio"] label {
+  background: #0b1726 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 999px !important;
+  padding: 6px 16px !important;
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+[data-testid="stRadio"] label:has(input:checked) {
+  background: #00a86b !important;
+  border-color: #00a86b !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 10px rgba(0, 168, 107, 0.35) !important;
+}
+[data-testid="stRadio"] label:has(input:checked) * {
+  color: #ffffff !important;
+}
+
+/* ===== TARJETAS KPI (HIGH EXECUTIVE CARDS) ===== */
+.ardp-kpi, .ardp-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 14px !important;
+  padding: 16px 18px !important;
+  min-height: 112px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+.ardp-kpi:hover, .ardp-card:hover {
+  border-color: rgba(141, 200, 240, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+.card-header-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 6px !important;
+}
+.card-header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.ardp-kpi .label, .ardp-card .label {
+  font-size: 10.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: var(--text-secondary) !important;
+  font-weight: 700 !important;
+}
+.ardp-kpi .value, .ardp-card .value {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  letter-spacing: -0.01em !important;
+}
+.ardp-kpi .note, .ardp-card .note {
+  font-size: 11px !important;
+  color: var(--text-muted) !important;
+  margin-top: 5px !important;
+}
+
+/* Insignias de iconos para tarjetas */
+.kpi-icon-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 127, 104, 0.2);
+  border: 1px solid rgba(24, 184, 148, 0.4);
+}
+.kpi-icon-badge.green {
+  background: rgba(8, 127, 104, 0.25);
+  border-color: rgba(24, 184, 148, 0.5);
+}
+.kpi-icon-badge.gold, .kpi-icon-badge.amber {
+  background: rgba(233, 182, 91, 0.18);
+  border-color: rgba(233, 182, 91, 0.45);
+}
+.kpi-icon-badge.red, .kpi-icon-badge.coral {
+  background: rgba(232, 117, 117, 0.18);
+  border-color: rgba(232, 117, 117, 0.45);
+}
+.kpi-icon-badge.blue, .kpi-icon-badge.cyan {
+  background: rgba(50, 124, 193, 0.22);
+  border-color: rgba(141, 200, 240, 0.45);
+}
+
+/* Mini indicador radial para Card 3 */
+.mini-radial-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== PANELES & CONTENEDORES (PANELS) ===== */
+.ardp-panel {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 14px !important;
+  padding: 18px 20px 16px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+.ardp-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+}
+.ardp-panel-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.ardp-panel-sub {
+  font-size: 11.5px !important;
+  color: #8fa4b8 !important;
+  margin: 2px 0 8px 0 !important;
+}
+
+/* Títulos de Sección */
+.ardp-section {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 18px 0 10px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.ardp-divider {
+  height: 1px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  margin: 20px 0 16px 0 !important;
+}
+
+/* Estado del plan: indicador con punto de color */
+.ardp-status {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 10px 0 14px 0 !important;
+}
+.ardp-dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+}
+.ardp-dot.green  { background: #22c55e !important; box-shadow: 0 0 8px rgba(34,197,94,0.5) !important; }
+.ardp-dot.yellow { background: #fbbf24 !important; box-shadow: 0 0 8px rgba(251,191,36,0.5) !important; }
+.ardp-dot.red    { background: #ef4444 !important; box-shadow: 0 0 8px rgba(239,68,68,0.5) !important; }
+
+/* Indicadores de Estado / Badges */
+.badge-pill {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.badge-pill.atrasado {
+  background: rgba(239, 68, 68, 0.16) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.38) !important;
+}
+.badge-pill.en-ritmo {
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.38) !important;
+}
+.badge-pill.atencion {
+  background: rgba(245, 158, 11, 0.16) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.38) !important;
+}
+
+/* Líneas de Estadísticas del Panel */
+.ardp-statline {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+.ardp-statline:last-child {
+  border-bottom: 0 !important;
+}
+.ardp-statline .name {
+  font-size: 12px !important;
+  color: #8fa4b8 !important;
+}
+.ardp-statline .num {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-align: right !important;
+}
+
+/* Tarjetas Operativas Compactas */
+.ardp-op {
+  background: #0b1726 !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  min-height: 80px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+.ardp-op .label {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #8fa4b8 !important;
+  font-weight: 700 !important;
+}
+.ardp-op .value {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-top: 5px !important;
+}
+.ardp-op .note {
+  font-size: 11px !important;
+  color: #64748b !important;
+  margin-top: 4px !important;
+}
+
+/* Leyendas de Gráficas */
+.ardp-chart-legend {
+  display: flex !important;
+  gap: 18px !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  margin: 4px 0 10px !important;
+  font-size: 12px !important;
+  color: #8fa4b8 !important;
+}
+.ardp-chart-legend span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.ardp-chart-legend .legend-swatch {
+  display: inline-block !important;
+  width: 14px !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+}
+.ardp-chart-legend .legend-swatch.meta {
+  background: var(--accent-mint) !important;
+}
+.ardp-chart-legend .legend-swatch.real {
+  background: var(--accent-emerald) !important;
+}
+
+/* ===== ELEMENTOS FORMULARES, TABLAS Y WIDGETS STREAMLIT ===== */
+[data-baseweb="select"] > div,
+[data-baseweb="input"] > div,
+[data-baseweb="textarea"] > div {
+  background: #0b1726 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+}
+[data-baseweb="select"] input,
+[data-baseweb="select"] span,
+[data-baseweb="input"] input,
+[data-baseweb="textarea"] textarea {
+  color: #ffffff !important;
+}
+[data-testid="stSelectbox"] label,
+[data-testid="stMultiSelect"] label,
+[data-testid="stTextInput"] label {
+  color: #8fa4b8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: var(--bg-card) !important;
+}
+[data-testid="stExpander"] {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 12px !important;
+}
+[data-testid="stExpander"] summary {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+[data-testid="stAlert"] {
+  background: #0b1726 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+/* Tarjetas st.metric nativas estilizadas en tema ejecutivo */
+[data-testid="stMetric"] {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 14px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+[data-testid="stMetric"]:hover {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-2px) !important;
+}
+[data-testid="stMetric"] [data-testid="stMetricLabel"] {
+  color: #8fa4b8 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+  color: #ffffff !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+[data-testid="stMetric"] [data-testid="stMetricDelta"] {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+}

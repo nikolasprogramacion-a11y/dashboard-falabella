@@ -1,0 +1,61 @@
+# Entorno y credenciales confidenciales
+.env
+.env.local
+*.env
+
+# Base de datos local y backups
+ventas.db
+*.db
+*.sqlite
+*.sqlite3
+backups/
+
+# Python y caché
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Pytest y cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs y sincronización
+*.log
+sync_log.txt
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs y SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporales de Streamlit
+.streamlit/secrets.toml
+
+# Datos comerciales internos de FINART
+datos/
+datos_guardados/
+capturas/
+page_dump.html
+current_msedge_test.png
+screenshot_step1.png
+test_tab0.png
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+
+# Respaldos locales de la aplicaci�n
+app_backup.py
+app_backup_v2.py
+app_pre_redesign.py

@@ -1,0 +1,21 @@
+# Configuración de linter y formateador Ruff para Finart S.A.S.
+line-length = 120
+target-version = "py313"
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = [
+    "E501",  # line length handled by formatter
+    "B008",  # do not perform function calls in argument defaults
+    "E402",  # module level import not at top of file (used for sys.path or streamlit config)
+]
+
+[lint.isort]
+known-first-party = ["core", "dashboards"]
